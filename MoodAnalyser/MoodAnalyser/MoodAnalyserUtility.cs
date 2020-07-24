@@ -21,7 +21,12 @@ namespace MoodAnalyser
         {
             try
             {
-                if(message.Equals("happy") || message.Equals("I am in any mood"))
+                if (message == null)
+                {
+                    return "happy";
+                }
+
+                if (message.Equals("happy") || message.Equals("I am in any mood"))
                 {
                     return "happy";
                 }
