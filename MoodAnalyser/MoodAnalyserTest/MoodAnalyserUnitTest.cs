@@ -7,16 +7,12 @@ namespace MoodAnalyserTest
         [Test]
         public void givenMood_WhenHappy_ShouldReturnHappy()
         {
-            try
-            {
                 MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
                 string mood = moodAnalyser.analyseMood("happy");
-                Assert.AreEqual("happy", mood);
-            }
-            catch (MoodAnalyser.MoodAnalyserException e)
-            {
-                Assert.AreEqual("please enter proper message", e.Message);
-            }
+                Assert.AreEqual("happy", mood); 
         }
+
+        
+
     }
 }
