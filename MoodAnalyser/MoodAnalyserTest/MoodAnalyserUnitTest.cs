@@ -1,3 +1,4 @@
+using MoodAnalyser;
 using NUnit.Framework;
 
 namespace MoodAnalyserTest
@@ -7,34 +8,57 @@ namespace MoodAnalyserTest
         [Test]
         public void givenMood_WhenHappy_ShouldReturnHappy()
         {
-                MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility("happy");
-                string mood = moodAnalyser.analyseMood();
+                MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
+                string mood = moodAnalyser.analyseMood("happy");
                 Assert.AreEqual("happy", mood); 
         }
 
         [Test]
         public void givenMood_WhenSad_ShouldReturnHappy()
         {
-            MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility("I am in sad mood");
-            string mood = moodAnalyser.analyseMood();
+            MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
+            string mood = moodAnalyser.analyseMood("I am in sad mood");
             Assert.AreEqual("sad", mood);
         }
 
         [Test]
         public void givenAnyMood_shouldReturnHappy()
         {
-            MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility("I am in any mood");
-            string mood = moodAnalyser.analyseMood();
+            MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
+            string mood = moodAnalyser.analyseMood("I am in any mood");
             Assert.AreEqual("happy", mood);
         }
 
         [Test]
-        public void givenNullMood_WhenAnalyse_shouldReturnHappy()
+        public void givenNullMood_WhenAnalyse_shouldReturnInvalid()
         {
-            MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
-            string mood = moodAnalyser.analyseMood();
-            Assert.AreEqual("happy", mood);
+            try
+            {
+                MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
+                string mood = moodAnalyser.analyseMood(null);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_EXCEPTION, e.Type);
+            }
+            
         }
+
+        [Test]
+        public void givenEmptyMood_WhenAnalyse_shouldReturnInvalid()
+        {
+            try
+            {
+                MoodAnalyser.MoodAnalyserUtility moodAnalyser = new MoodAnalyser.MoodAnalyserUtility();
+                string mood = moodAnalyser.analyseMood("");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_EXCEPTION, e.Type);
+            }
+            
+        }
+
 
 
     }
