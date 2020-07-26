@@ -4,12 +4,16 @@ using System.Text;
 
 namespace MoodAnalyser
 {
-    [Serializable]
     public class MoodAnalyserException : Exception
     {
-        public MoodAnalyserException(string message) : base(message)
+        public enum ExceptionType
         {
-
+            INVALID_EXCEPTION
+        }
+        public ExceptionType Type { get; set; }
+        public MoodAnalyserException(ExceptionType Type,string message) : base(message)
+        {
+            this.Type = Type;     
         }
     }
 }

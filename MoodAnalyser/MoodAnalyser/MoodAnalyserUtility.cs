@@ -17,28 +17,28 @@ namespace MoodAnalyser
         {
             this.message = message;
         }
-        public string analyseMood()
-        {
-            try
-            {
-                if (message == null)
-                {
-                    return "happy";
-                }
+         public string analyseMood(string message)
+         {
+             try
+             {
+                 if (message == null)
+                 {
+                     return "happy";
+                 }
 
-                if (message.Equals("happy") || message.Equals("I am in any mood"))
-                {
-                    return "happy";
-                }
-                else
-                {
-                    return "sad";
-                }
-            }
-            catch(NullReferenceException)
-            {
-                throw new MoodAnalyserException("Please enter correct message");
-            }
-        }
+                 if (message.Equals("happy") || message.Equals("I am in any mood"))
+                 {
+                     return "happy";
+                 }
+                 else
+                 {
+                     return "sad";
+                 }
+             }
+             catch(NullReferenceException)
+             {
+                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_EXCEPTION, "Please Entered Proper Mood");
+             }
+         }
     }
 }
